@@ -10,26 +10,26 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.RotateAnimation;
 
 
-public class FloatButtonL extends ImageButton implements OnClickListener, AnimationListener
+public class RotateButtonL extends ImageButton implements OnClickListener, AnimationListener
 {
 	private boolean mIsTurned = false;
 	private float m2Degree = 45f;
 	
 	private AnimationListener mAnimationListener;
 	
-	public FloatButtonL(Context context)
+	public RotateButtonL(Context context)
 	{
 		super(context);
 		this.setOnClickListener(this);
 	}
 	
-	public FloatButtonL(Context context, AttributeSet attrs)
+	public RotateButtonL(Context context, AttributeSet attrs)
 	{
         super(context, attrs);
 		this.setOnClickListener(this);
     }
 
-	public FloatButtonL(Context context, AttributeSet attrs, int defStyle)
+	public RotateButtonL(Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
 		this.setOnClickListener(this);

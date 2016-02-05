@@ -10,7 +10,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity 
 {
 
-	private FloatButtonL mButton;
+	private RotateButtonL mButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -23,7 +23,7 @@ public class MainActivity extends Activity
 
 	private void initializeView()
 	{
-		mButton = (FloatButtonL) findViewById(R.id.btn);
+		mButton = (RotateButtonL) findViewById(R.id.btn);
 		
 		mButton.setOnClickListener(new OnClickListener() 
 		{
