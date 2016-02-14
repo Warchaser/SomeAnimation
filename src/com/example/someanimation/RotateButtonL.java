@@ -64,7 +64,7 @@ public class RotateButtonL extends ImageButton implements OnClickListener, Anima
 		this.absAnimation.startRotateAnimation();
 	}
 
-	public final void startCostumeAnimation()
+	public final void startCustomAnimation()
 	{
 		if(mAnimationClass != null)
 		{

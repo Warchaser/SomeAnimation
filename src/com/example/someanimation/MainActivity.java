@@ -37,7 +37,7 @@ public class MainActivity extends Activity
 			{
 //				mButton.startDefaultRotateAnimation();
 				mButton.setAbsAnimation(animationClass);
-				mButton.startCostumeAnimation();
+				mButton.startCustomAnimation();
 				Toast.makeText(MainActivity.this, "Click!", Toast.LENGTH_SHORT).show();
 			}
 		});
