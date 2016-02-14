@@ -5,12 +5,17 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Toast;
+
+import com.example.someanimation.absOnes.AbsRotateButtonL;
 
 public class MainActivity extends Activity 
 {
 
 	private RotateButtonL mButton;
+	private boolean mIsTurned = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -30,7 +35,9 @@ public class MainActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
-				mButton.startRotateAnimation();
+//				mButton.startDefaultRotateAnimation();
+				mButton.setAbsAnimation(animationClass);
+				mButton.startCostumeAnimation();
 				Toast.makeText(MainActivity.this, "Click!", Toast.LENGTH_SHORT).show();
 			}
 		});
@@ -43,6 +50,53 @@ public class MainActivity extends Activity
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+
+	private AbsRotateButtonL animationClass = new AbsRotateButtonL()
+	{
+		@Override
+		public void startRotateAnimation()
+		{
+			RotateAnimation animation;
+
+			if(!mIsTurned)
+			{
+				animation = new RotateAnimation(0f, 45f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+				mIsTurned = true;
+			}
+			else
+			{
+				animation = new RotateAnimation(45f, 0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+				mIsTurned = false;
+			}
+
+			animation.setAnimationListener(new Animation.AnimationListener()
+			{
+				@Override
+				public void onAnimationStart(Animation animation)
+				{
+					mButton.setClickable(false);
+				}
+
+				@Override
+				public void onAnimationEnd(Animation animation)
+				{
+					mButton.setClickable(true);
+				}
+
+				@Override
+				public void onAnimationRepeat(Animation animation)
+				{
+
+				}
+			});
+
+			animation.setDuration(500);
+
+			animation.setFillAfter(true);
+
+			mButton.startAnimation(animation);
+		}
+	};
 
 	@Override
 	protected void onDestroy()

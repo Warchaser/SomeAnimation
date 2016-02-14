@@ -9,13 +9,18 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.RotateAnimation;
 
+import com.example.someanimation.absOnes.AbsRotateButtonL;
+
 
 public class RotateButtonL extends ImageButton implements OnClickListener, AnimationListener
 {
 	private boolean mIsTurned = false;
 	private float m2Degree = 45f;
+	private int mDuration = 500;
 	
 	private AnimationListener mAnimationListener;
+
+	private AbsRotateButtonL mAnimationClass;
 	
 	public RotateButtonL(Context context)
 	{
@@ -38,7 +43,7 @@ public class RotateButtonL extends ImageButton implements OnClickListener, Anima
 	@Override
 	public final void onClick(View v)
 	{
-		this.startRotateAnimation();
+		this.startDefaultRotateAnimation();
 	}
 	
 	public void setAnimationListener(AnimationListener animationListener)
@@ -48,36 +53,23 @@ public class RotateButtonL extends ImageButton implements OnClickListener, Anima
 			this.mAnimationListener = animationListener;
 		}
 	}
-	
-	public final void startRotateAnimation()
+
+	public void setAbsAnimation(AbsRotateButtonL absRotateButtonL)
 	{
-		RotateAnimation animation;
-		
-		if(!mIsTurned)
+		this.mAnimationClass = absRotateButtonL;
+	}
+
+	public final void startDefaultRotateAnimation()
+	{
+		this.absAnimation.startRotateAnimation();
+	}
+
+	public final void startCostumeAnimation()
+	{
+		if(mAnimationClass != null)
 		{
-			animation = new RotateAnimation(0f, m2Degree, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-			mIsTurned = true;
+			mAnimationClass.startRotateAnimation();
 		}
-		else
-		{
-			animation = new RotateAnimation(m2Degree, 0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-			mIsTurned = false;
-		}
-		
-		if(mAnimationListener != null)
-		{
-			animation.setAnimationListener(this.mAnimationListener);
-		}
-		else
-		{
-			animation.setAnimationListener(this);
-		}
-		
-		animation.setDuration(500);
-		
-		animation.setFillAfter(true);
-		
-		this.startAnimation(animation);
 	}
 	
 	public void set2Degree(float toDegree)
@@ -88,6 +80,16 @@ public class RotateButtonL extends ImageButton implements OnClickListener, Anima
 	public float get2Degree()
 	{
 		return this.m2Degree;
+	}
+
+	public void set2Duration(int duration)
+	{
+		this.mDuration = duration;
+	}
+
+	public int getDuration()
+	{
+		return this.mDuration;
 	}
 
 	@Override
@@ -117,4 +119,39 @@ public class RotateButtonL extends ImageButton implements OnClickListener, Anima
 			mAnimationListener = null;
 		}
 	}
+
+	private AbsRotateButtonL absAnimation = new AbsRotateButtonL()
+	{
+		@Override
+		public void startRotateAnimation()
+		{
+			RotateAnimation animation;
+
+			if(!mIsTurned)
+			{
+				animation = new RotateAnimation(0f, m2Degree, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+				mIsTurned = true;
+			}
+			else
+			{
+				animation = new RotateAnimation(m2Degree, 0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+				mIsTurned = false;
+			}
+
+			if(mAnimationListener != null)
+			{
+				animation.setAnimationListener(mAnimationListener);
+			}
+			else
+			{
+				animation.setAnimationListener(RotateButtonL.this);
+			}
+
+			animation.setDuration(mDuration);
+
+			animation.setFillAfter(true);
+
+			startAnimation(animation);
+		}
+	};
 }
