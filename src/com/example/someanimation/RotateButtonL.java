@@ -30,15 +30,15 @@ public class RotateButtonL extends ImageButton implements OnClickListener, Anima
 	
 	public RotateButtonL(Context context, AttributeSet attrs)
 	{
-        super(context, attrs);
+		super(context, attrs);
 		this.setOnClickListener(this);
-    }
+	}
 
 	public RotateButtonL(Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
 		this.setOnClickListener(this);
-    }
+	}
 
 	@Override
 	public final void onClick(View v)
