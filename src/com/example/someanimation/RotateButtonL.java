@@ -70,6 +70,10 @@ public class RotateButtonL extends ImageButton implements OnClickListener, Anima
 		{
 			mAnimationClass.startRotateAnimation();
 		}
+		else
+		{
+			this.startDefaultRotateAnimation();
+		}
 	}
 	
 	public void set2Degree(float toDegree)
@@ -117,6 +121,11 @@ public class RotateButtonL extends ImageButton implements OnClickListener, Anima
 		if(mAnimationListener != null)
 		{
 			mAnimationListener = null;
+		}
+
+		if(mAnimationClass != null)
+		{
+			mAnimationClass = null;
 		}
 	}
 

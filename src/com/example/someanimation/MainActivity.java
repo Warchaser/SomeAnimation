@@ -15,7 +15,7 @@ public class MainActivity extends Activity
 {
 
 	private RotateButtonL mButton;
-	private boolean mIsTurned = false;
+	private boolean mIsRotated = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -58,15 +58,15 @@ public class MainActivity extends Activity
 		{
 			RotateAnimation animation;
 
-			if(!mIsTurned)
+			if(!mIsRotated)
 			{
 				animation = new RotateAnimation(0f, 45f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-				mIsTurned = true;
+				mIsRotated = true;
 			}
 			else
 			{
 				animation = new RotateAnimation(45f, 0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-				mIsTurned = false;
+				mIsRotated = false;
 			}
 
 			animation.setAnimationListener(new Animation.AnimationListener()
