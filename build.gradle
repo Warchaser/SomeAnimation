@@ -1,3 +1,10 @@
+ext.VERSION_NAME=1
+ext.GROUP="Warchaser"
+ext.compileSdkVersion=23
+ext.buildToolsVersion="23.0.2"
+ext.minSdkVersion=8
+ext.targetSdkVersion=23
+
 buildscript {
     repositories {
         mavenCentral()
@@ -10,10 +17,13 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
+//    debugCompile project(':leakcanary-android')
+    compile project(path: ':leakcanary-android')
+    compile project(path: ':leakcanary-watcher')
 }
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
     sourceSets {

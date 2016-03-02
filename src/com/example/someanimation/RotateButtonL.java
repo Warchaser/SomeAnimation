@@ -127,6 +127,11 @@ public class RotateButtonL extends ImageButton implements OnClickListener, Anima
 		{
 			mAnimationClass = null;
 		}
+
+		if(absAnimation != null)
+		{
+			absAnimation = null;
+		}
 	}
 
 	private AbsRotateButtonL absAnimation = new AbsRotateButtonL()
