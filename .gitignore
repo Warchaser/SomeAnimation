@@ -11,7 +11,7 @@ log.txt
 *.classpath
 
 .gradle/
-gradle/
+
 build/
 
 gradlew
